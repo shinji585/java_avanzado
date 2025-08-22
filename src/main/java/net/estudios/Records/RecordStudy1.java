@@ -1,5 +1,7 @@
 package net.estudios.Records;
 
+import org.jetbrains.annotations.NotNull;
+
 public record RecordStudy1() {
     // en esta seccion se entenderan los records y su funcionamiento
     // los recors son una entidad que inmutaliza los datos con la cual la definamos
@@ -21,7 +23,7 @@ record  Punto2D(double x, double y){
         }
     }
     // constructor alternantivo
-    public Punto2D(Punto2D otroPunto){
+    public Punto2D(@NotNull Punto2D otroPunto){
         this(otroPunto.x(), otroPunto.y());
         System.out.println("Se ha creado un nuevo punto apartir de otro.");
     }
@@ -32,7 +34,7 @@ record  Punto2D(double x, double y){
     }
 
     // y sobre todo metodos estaticos
-    public static double distanciaEntreDosPuntos(Punto2D p1, Punto2D p2){
+    public static double distanciaEntreDosPuntos(@NotNull Punto2D p1, @NotNull Punto2D p2){
         double dx = p1.x() - p2.x();
         double dy = p1.y() - p2.y();
         return  Math.sqrt(dx*dx + dy*dy);
