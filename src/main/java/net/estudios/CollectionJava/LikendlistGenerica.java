@@ -44,8 +44,10 @@ public class LikendlistGenerica<T> {
             if (current == null){
                 throw  new IllegalArgumentException("Warning: the element don't exits on the likendlist");
             }else if (current.next == null){
+                assert previous != null;
                 previous.next = null;
             }else{
+                assert previous != null;
                 previous.next = current.next.next;
             }
         }
@@ -88,24 +90,5 @@ public class LikendlistGenerica<T> {
             count++;
         }
         return  count;
-    }
-
-    public static void main(String[] args) {
-        LikendlistGenerica<String> nombres = new LikendlistGenerica<>();
-        // le pasamos datos
-        nombres.add("samuel");
-        nombres.add("sebastian");
-        nombres.add("santiago");
-
-
-        System.out.println(nombres.size());
-        nombres.foreach();
-
-        nombres.deleate(2);
-
-        System.out.println("despues de eliminar");
-
-        nombres.foreach();
-
     }
 }
