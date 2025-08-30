@@ -22,6 +22,35 @@ public class LikendlistGenerica<T> {
         }
     }
 
+    // creamos el metodo delate
+    public void deleate(int position){
+        if (position == 0){
+            head = head.next;
+        }
+        // creamos una variable local del nodo
+        Node<T> current = head; // current referencia a head pero no accede a este
+        int count = 0;
+        // declaramos una variable previa a la cual queremos eliminar
+        Node<T> previous = null;
+        while (current != null && count < position){
+            // nos movemos a la posicion que queremos eliminar
+            previous = current;
+            current = current.next;
+            count++;
+        }
+
+        // verificamos que estemos en la posicion que queremos eliminar
+        if (count == position){
+            if (current == null){
+                throw  new IllegalArgumentException("Warning: the element don't exits on the likendlist");
+            }else if (current.next == null){
+                previous.next = null;
+            }else{
+                previous.next = current.next.next;
+            }
+        }
+    }
+
     public void update(int position,T data){
         Node<T> current = head;
         // recorremos  y inicializamos un contador
@@ -51,6 +80,16 @@ public class LikendlistGenerica<T> {
         }
     }
 
+    public int  size(){
+        Node<T> current = head;
+        int count = 0;
+        while (current != null){
+            current = current.next;
+            count++;
+        }
+        return  count;
+    }
+
     public static void main(String[] args) {
         LikendlistGenerica<String> nombres = new LikendlistGenerica<>();
         // le pasamos datos
@@ -58,6 +97,13 @@ public class LikendlistGenerica<T> {
         nombres.add("sebastian");
         nombres.add("santiago");
 
+
+        System.out.println(nombres.size());
+        nombres.foreach();
+
+        nombres.deleate(2);
+
+        System.out.println("despues de eliminar");
 
         nombres.foreach();
 
