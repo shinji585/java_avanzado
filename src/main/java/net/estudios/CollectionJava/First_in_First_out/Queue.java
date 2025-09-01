@@ -13,7 +13,7 @@ public class Queue<E> {
 
     // creamos los metodo
     public void enqueue(E element){
-       this.linkedList.add(element);
+       this.linkedList.addLast(element);
     }
     public E dequeue(){
          if (this.linkedList.isEmpty()){
