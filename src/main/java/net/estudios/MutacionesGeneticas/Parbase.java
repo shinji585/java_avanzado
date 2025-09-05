@@ -2,8 +2,7 @@ package net.estudios.MutacionesGeneticas;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Comparator;
-import java.util.regex.Pattern;
+
 
 public record Parbase<T extends Comparable<T>>(T original, T mutada) implements  Comparable<Parbase<T>> {
 
