@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import net.estudios.MVC.Proyecto.Model.Enums.Prioridad;
-import net.estudios.MVC.Proyecto.Model.Util.GenerateID;
+
 
 
 
@@ -35,20 +35,15 @@ public class Task {
      private String estado; 
      private User asignado; 
      private Date recordatorio;
-     @Setter(AccessLevel.NONE) 
-     private String id;
+
+
 
      // esta es mi tarea entonces las tareas son personalizadas tienen distintas formas y ademas de tener distintas formas se pueden utilizar de distintas formas lo siguiente que se hara sera una clase personalizada de esta que funcionara como una clase la cual permitira manejar multiples instancias de esta clase 
 
      // ahora el id no sera dado por el usuario sera dado por el mismo constructor 
-     public Task(){
-        this.id = GenerateID.genereTaskID();
-     }
 
      public Task(String name, String description, Date startDate, Date endDate, Prioridad prioridad, String estado,
-            User asignado, Date recordatorio) {
-                // llamamos al constructor vacio para generar el ID primero 
-                this();
+            User asignado, Date recordatorio) { 
         this.name = name;
         this.description = description;
         this.startDate = startDate;

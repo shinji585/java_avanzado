@@ -1,4 +1,4 @@
-package net.estudios.MVC.Proyecto.Model.Util;
+package net.estudios.MVC.Proyecto.Util;
 
 
 import java.time.Instant;
