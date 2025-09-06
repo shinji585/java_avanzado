@@ -2,7 +2,6 @@ package net.estudios.MVC.Proyecto.Model;
 
 import java.util.Date;
 
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

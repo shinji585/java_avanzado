@@ -6,13 +6,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import net.estudios.MVC.Proyecto.Exception.ArgumentException;
 import net.estudios.MVC.Proyecto.Exception.TaskException;
 import net.estudios.MVC.Proyecto.Model.Person;
 import net.estudios.MVC.Proyecto.Model.Task;
 import net.estudios.MVC.Proyecto.Util.GenerateID;
 
 public class TaskDeque {
-    private  ArrayList<Task> tasks = new ArrayList<>();; 
 
     // en esta clase lo que haremos sera manejar los datos y sus acciones pero de forma diferente en la cual cada pila lo que tendra es un array de ellas pero enlazadas 
 
@@ -28,9 +28,6 @@ public class TaskDeque {
         if (tarea == null){
             throw new TaskException("exception: the task is null");
         }
-
-        // luego de verificar que la tarea no sea nulla la agregamos a el task 
-        tasks.add(tarea);
         // agregamos la tarea a el filtro de tareas 
         filtroTareas.put(GenerateID.genereTaskID(), tarea);
     }
@@ -41,7 +38,7 @@ public class TaskDeque {
         Objects.requireNonNullElse(id, "the id pass is empty");
 
         // despues de verificar que no sea null el id lo que hacemos es buscarlo en el map 
-        for (String idMap: filtroTareas.keySet()){
+        for (String idMap: filtroTareas.keySet()){  
             if (!id.equalsIgnoreCase(idMap)){
                 // eliminamos el elemento 
                 return filtroTareas.remove(idMap);
@@ -84,5 +81,26 @@ public class TaskDeque {
     public ArrayList<Task> listTask(){
         return  (ArrayList<Task>) filtroTareas.values().stream()
                 .collect(Collectors.toList());
+    }
+
+    // mostramos las tareas con sus ids 
+    public void showTaskwithID(){
+        Objects.requireNonNull(this.filtroTareas, "You don't have task values");
+        for(Map.Entry<String, Task> values: this.filtroTareas.entrySet()){
+               System.out.println("key: " + values.getKey() + " ->  Value:" + values.getValue());
+        }
+    }
+
+    public int size(){
+        return this.filtroTareas.size();
+    }
+
+
+    // metodo para actualizar las task 
+    public void update(Task update,String id) throws Exception{
+          if (this.filtroTareas.replace(id, update) == null){ // veriicamos primero si la tarea existe 
+                      // lanzamos un mensaje si la tarea no existe  
+                      throw new ArgumentException("The task doesn't exits");
+          } 
     }
 }
