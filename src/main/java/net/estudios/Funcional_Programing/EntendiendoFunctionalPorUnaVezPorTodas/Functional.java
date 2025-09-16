@@ -2,6 +2,7 @@ package net.estudios.Funcional_Programing.EntendiendoFunctionalPorUnaVezPorTodas
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Functional {
@@ -17,6 +18,16 @@ public class Functional {
         Function<String,Integer> lenght = String::length;
 
         return lenght.apply(word);
+     }
+
+     // estudio de bifunction<T,U,R> esta interfaz funcional es la extension de lo que viene siendo function pero con la diferencia que se utiliza para cuando tenemos dos parametros y queremos retornar un unico valor 
+
+     static BiFunction<Integer,Integer,Integer> division = (a,b) -> a/b;
+     
+     public static  void aumentarDIvision(){
+          Function<Integer,Integer> mensaje = (a) ->  a*2;
+          
+          System.out.println("entre 10 y 5 y obtenemos: " + division.andThen(mensaje).apply(10, 5));
      }
 
     public static void main(String[] args) {
@@ -37,6 +48,8 @@ public class Functional {
          Function<Integer,Double> funcionCompuesta = reducidor.andThen(multiplicador);
 
          System.out.println("Funcion compuesta: " + funcionCompuesta.apply(20));
+
+         aumentarDIvision();
     }
     /*
      * analizando los metodos de function<T,R>: 
@@ -48,4 +61,7 @@ public class Functional {
      // ejemplo the andthen 
      static Function<Integer,Number> reducidor = (a) -> a/2;
      static Function<Number,Double> multiplicador = (a) -> a.doubleValue()*5;
+
+     // entonces para que quede claro andthen ejecuta la funcion actual y luego la que pasas como argumento
+     // compose ejecuta la funcion que pasas como argumento y luego la actual 
 }
