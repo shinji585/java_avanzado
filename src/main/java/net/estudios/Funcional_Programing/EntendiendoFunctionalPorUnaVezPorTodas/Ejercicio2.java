@@ -46,8 +46,6 @@ class Point<T>{
    T value1; // x
    T value2; // y
    
-   
-
    public List<T> valoresReturn(){
         return Arrays.asList(this.value1,this.value2);
    }
